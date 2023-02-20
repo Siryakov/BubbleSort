@@ -1,18 +1,15 @@
 import java.io.*;
-import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        try {
+    public static void main(String[] args) {
+        File fileIn = new File("D:/code/Java/BubbleSort/src/input.txt");
+        File fileOut = new File("D:/code/Java/BubbleSort/src/Output.txt");
 
-            File fileIn = new File("D:/code/Java/BubbleSort/src/input.txt");
-            File fileOut = new File("D:/code/Java/BubbleSort/src/Output.txt");
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileIn));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(fileOut))) {
 
-            FileReader fr = new FileReader(fileIn);
-            BufferedReader reader = new BufferedReader(fr);
-            String line = reader.readLine();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileOut));
-            while (line != null) {
+            String line;
+            while ((line = reader.readLine()) != null) {
                 String[] buffer = line.split(" ");
                 for (int i = 0; i < buffer.length - 1; i++) {
                     for (int j = 0; j < buffer.length - i - 1; j++) {
@@ -29,18 +26,11 @@ public class Main {
                 }
                 writer.write("\n");
                 System.out.println(line);
-                // считываем остальные строки в цикле
-                line = reader.readLine();
             }
 
-            writer.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private static boolean isGreater(String a, String b) {
@@ -53,9 +43,6 @@ public class Main {
         }
     }
 }
-
-
-
 
 
 
